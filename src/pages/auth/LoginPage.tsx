@@ -1,0 +1,83 @@
+import { useState, FormEvent } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '@/hooks/useAuth';
+import { Input } from '@/components/ui/Input';
+import { Button } from '@/components/ui/Button';
+
+export function LoginPage() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const { signIn } = useAuth();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+
+    try {
+      await signIn(email, password);
+      navigate('/convert');
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to sign in');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-8">
+        <div>
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+            Sign in to DataTextConverter
+          </h2>
+        </div>
+
+        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+          {error && (
+            <div className="rounded-md bg-red-50 p-4">
+              <p className="text-sm text-red-800">{error}</p>
+            </div>
+          )}
+
+          <div className="space-y-4">
+            <Input
+              label="Email address"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              autoComplete="email"
+            />
+
+            <Input
+              label="Password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              autoComplete="current-password"
+            />
+          </div>
+
+          <div>
+            <Button type="submit" className="w-full" disabled={loading}>
+              {loading ? 'Signing in...' : 'Sign in'}
+            </Button>
+          </div>
+
+          <div className="text-center text-sm">
+            <span className="text-gray-600">Don't have an account? </span>
+            <Link to="/signup" className="text-blue-600 hover:text-blue-500">
+              Sign up
+            </Link>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}
