@@ -54,9 +54,9 @@ export class ProfileService extends BaseService {
         avatar_url: updates.avatarUrl,
       };
 
-      const { data, error} = await supabase
+      const { data, error} = await (supabase as any)
         .from('profiles')
-        .update(updateData as any)
+        .update(updateData)
         .eq('id', userId)
         .select()
         .maybeSingle();
@@ -104,9 +104,9 @@ export class ProfileService extends BaseService {
         preferences: updates.customPreferences,
       };
 
-      const { data, error } = await supabase
+      const { data, error } = await (supabase as any)
         .from('user_preferences')
-        .update(updateData as any)
+        .update(updateData)
         .eq('user_id', userId)
         .select()
         .maybeSingle();

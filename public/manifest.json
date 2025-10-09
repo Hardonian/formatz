@@ -1,0 +1,56 @@
+{
+  "name": "DataTextConverter - Multi-Format Data Converter",
+  "short_name": "DataConverter",
+  "description": "Convert data between JSON, XML, CSV, YAML, TOML, HTML, Markdown and more. Save templates, track history, and share with the community.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3b82f6",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["productivity", "utilities", "developer-tools"],
+  "screenshots": [
+    {
+      "src": "/screenshot1.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "label": "Convert data between multiple formats"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "New Conversion",
+      "short_name": "Convert",
+      "description": "Start a new data conversion",
+      "url": "/convert",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Templates",
+      "short_name": "Templates",
+      "description": "Browse conversion templates",
+      "url": "/templates",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "History",
+      "short_name": "History",
+      "description": "View conversion history",
+      "url": "/history",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

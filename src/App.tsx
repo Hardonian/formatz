@@ -4,16 +4,18 @@ import { ProtectedRoute } from '@/components/ProtectedRoute';
 import { Layout } from '@/components/layout/Layout';
 import { LoginPage } from '@/pages/auth/LoginPage';
 import { SignupPage } from '@/pages/auth/SignupPage';
-import { ConversionWorkspace } from '@/pages/ConversionWorkspace';
+import { EnhancedConversionWorkspace } from '@/pages/EnhancedConversionWorkspace';
 import { TemplatesPage } from '@/pages/TemplatesPage';
 import { HistoryPage } from '@/pages/HistoryPage';
 import { ProfilePage } from '@/pages/ProfilePage';
 import { PublicGalleryPage } from '@/pages/PublicGalleryPage';
+import { CommandPalette } from '@/components/CommandPalette';
 
 export function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
+        <CommandPalette />
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
@@ -27,7 +29,7 @@ export function App() {
             }
           >
             <Route index element={<Navigate to="/convert" replace />} />
-            <Route path="convert" element={<ConversionWorkspace />} />
+            <Route path="convert" element={<EnhancedConversionWorkspace />} />
             <Route path="templates" element={<TemplatesPage />} />
             <Route path="history" element={<HistoryPage />} />
             <Route path="gallery" element={<PublicGalleryPage />} />

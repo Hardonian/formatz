@@ -176,12 +176,12 @@ export class TemplateService extends BaseService {
         target_format_filter: params.targetFormat,
         min_rating: params.minRating || 0,
         result_limit: params.limit || 20,
-      } as any);
+      } as any) as { data: any; error: any };
 
       if (error) throw error;
 
       // Map to ConversionTemplate format
-      return data?.map((item: any) => ({
+      return (data as any[])?.map((item: any) => ({
         id: item.id,
         userId: '',
         name: item.name,
@@ -222,9 +222,9 @@ export class TemplateService extends BaseService {
         is_favorite: updates.isFavorite,
       };
 
-      const { data, error} = await supabase
+      const { data, error} = await (supabase as any)
         .from('conversion_templates')
-        .update(updateData as any)
+        .update(updateData)
         .eq('id', templateId)
         .eq('user_id', userId)
         .select()
@@ -267,18 +267,18 @@ export class TemplateService extends BaseService {
         .select('is_favorite')
         .eq('id', templateId)
         .eq('user_id', userId)
-        .maybeSingle();
+        .maybeSingle() as { data: any };
 
       if (!current) throw new Error('Template not found');
 
       // Toggle
       const updateData: Partial<Database['public']['Tables']['conversion_templates']['Update']> = {
-        is_favorite: !current.is_favorite
+        is_favorite: !(current as any).is_favorite
       };
 
-      const { data, error } = await supabase
+      const { data, error } = await (supabase as any)
         .from('conversion_templates')
-        .update(updateData as any)
+        .update(updateData)
         .eq('id', templateId)
         .eq('user_id', userId)
         .select()
