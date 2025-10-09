@@ -5,6 +5,8 @@
  * Supports JSON, XML, CSV, YAML, TOML, HTML, Markdown, and TXT.
  */
 
+import * as yaml from 'js-yaml';
+import * as TOML from '@iarna/toml';
 import type { ConversionFormat, TemplateConfiguration } from '../../types/dtos';
 
 export class ConversionEngine {
@@ -123,14 +125,19 @@ export class ConversionEngine {
   }
 
   private parseYAML(data: string): any {
-    // Simple YAML parser (in production, use js-yaml library)
-    // This is a simplified version for demonstration
-    throw new Error('YAML parsing requires js-yaml library - install with: npm install js-yaml');
+    try {
+      return yaml.load(data);
+    } catch (error) {
+      throw new Error('Invalid YAML format');
+    }
   }
 
   private parseTOML(data: string): any {
-    // TOML parser (in production, use @iarna/toml library)
-    throw new Error('TOML parsing requires @iarna/toml library - install with: npm install @iarna/toml');
+    try {
+      return TOML.parse(data);
+    } catch (error) {
+      throw new Error('Invalid TOML format');
+    }
   }
 
   private parseHTML(data: string): any {
@@ -195,13 +202,23 @@ export class ConversionEngine {
   }
 
   private serializeYAML(data: any, config?: TemplateConfiguration): string {
-    // Simple YAML serializer (in production, use js-yaml library)
-    throw new Error('YAML serialization requires js-yaml library - install with: npm install js-yaml');
+    try {
+      return yaml.dump(data, {
+        indent: config?.prettyPrint ? 2 : 0,
+        lineWidth: 120,
+        noRefs: true
+      });
+    } catch (error) {
+      throw new Error('Failed to serialize to YAML');
+    }
   }
 
   private serializeTOML(data: any, config?: TemplateConfiguration): string {
-    // TOML serializer (in production, use @iarna/toml library)
-    throw new Error('TOML serialization requires @iarna/toml library - install with: npm install @iarna/toml');
+    try {
+      return TOML.stringify(data);
+    } catch (error) {
+      throw new Error('Failed to serialize to TOML');
+    }
   }
 
   private serializeHTML(data: any, config?: TemplateConfiguration): string {

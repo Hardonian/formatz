@@ -279,6 +279,20 @@ export class ConversionService extends BaseService {
       } : undefined,
     };
   }
+
+  /**
+   * Delete a conversion history entry
+   */
+  async deleteHistory(id: string): Promise<ServiceResponse<void>> {
+    return this.executeOperation(async () => {
+      const { error } = await this.supabase
+        .from('conversion_history')
+        .delete()
+        .eq('id', id);
+
+      if (error) throw error;
+    }, 'Failed to delete history entry');
+  }
 }
 
 // Export singleton instance

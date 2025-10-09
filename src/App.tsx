@@ -5,6 +5,10 @@ import { Layout } from '@/components/layout/Layout';
 import { LoginPage } from '@/pages/auth/LoginPage';
 import { SignupPage } from '@/pages/auth/SignupPage';
 import { ConversionWorkspace } from '@/pages/ConversionWorkspace';
+import { TemplatesPage } from '@/pages/TemplatesPage';
+import { HistoryPage } from '@/pages/HistoryPage';
+import { ProfilePage } from '@/pages/ProfilePage';
+import { PublicGalleryPage } from '@/pages/PublicGalleryPage';
 
 export function App() {
   return (
@@ -24,22 +28,10 @@ export function App() {
           >
             <Route index element={<Navigate to="/convert" replace />} />
             <Route path="convert" element={<ConversionWorkspace />} />
-            <Route
-              path="templates"
-              element={<div className="text-center text-gray-600">Templates page coming soon...</div>}
-            />
-            <Route
-              path="history"
-              element={<div className="text-center text-gray-600">History page coming soon...</div>}
-            />
-            <Route
-              path="gallery"
-              element={<div className="text-center text-gray-600">Gallery page coming soon...</div>}
-            />
-            <Route
-              path="profile"
-              element={<div className="text-center text-gray-600">Profile page coming soon...</div>}
-            />
+            <Route path="templates" element={<TemplatesPage />} />
+            <Route path="history" element={<HistoryPage />} />
+            <Route path="gallery" element={<PublicGalleryPage />} />
+            <Route path="profile" element={<ProfilePage />} />
           </Route>
 
           <Route path="*" element={<Navigate to="/" replace />} />

@@ -13,7 +13,10 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "@iarna/toml": "^2.2.5",
     "@supabase/supabase-js": "^2.38.4",
+    "@types/js-yaml": "^4.0.9",
+    "js-yaml": "^4.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.20.0"
