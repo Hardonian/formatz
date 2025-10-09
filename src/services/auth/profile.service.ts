@@ -7,6 +7,7 @@
 
 import { BaseService } from '../base.service';
 import { supabase } from '../../lib/supabase';
+import type { Database } from '../../types/database/schema';
 import type {
   ServiceResponse,
   UserProfile,
@@ -47,13 +48,15 @@ export class ProfileService extends BaseService {
     return this.executeOperation(async () => {
       const userId = await this.getCurrentUserId();
 
-      const { data, error } = await supabase
+      const updateData: Partial<Database['public']['Tables']['profiles']['Update']> = {
+        username: updates.username,
+        full_name: updates.fullName,
+        avatar_url: updates.avatarUrl,
+      };
+
+      const { data, error} = await supabase
         .from('profiles')
-        .update({
-          username: updates.username,
-          full_name: updates.fullName,
-          avatar_url: updates.avatarUrl,
-        })
+        .update(updateData as any)
         .eq('id', userId)
         .select()
         .maybeSingle();
@@ -92,16 +95,18 @@ export class ProfileService extends BaseService {
     return this.executeOperation(async () => {
       const userId = await this.getCurrentUserId();
 
+      const updateData: Partial<Database['public']['Tables']['user_preferences']['Update']> = {
+        theme: updates.theme,
+        default_source_format: updates.defaultSourceFormat,
+        default_target_format: updates.defaultTargetFormat,
+        auto_save_history: updates.autoSaveHistory,
+        max_file_size_mb: updates.maxFileSizeMb,
+        preferences: updates.customPreferences,
+      };
+
       const { data, error } = await supabase
         .from('user_preferences')
-        .update({
-          theme: updates.theme,
-          default_source_format: updates.defaultSourceFormat,
-          default_target_format: updates.defaultTargetFormat,
-          auto_save_history: updates.autoSaveHistory,
-          max_file_size_mb: updates.maxFileSizeMb,
-          preferences: updates.customPreferences,
-        })
+        .update(updateData as any)
         .eq('user_id', userId)
         .select()
         .maybeSingle();
@@ -121,7 +126,7 @@ export class ProfileService extends BaseService {
       const targetUserId = userId || await this.getCurrentUserId();
 
       const { data, error } = await supabase
-        .rpc('get_user_dashboard', { user_uuid: targetUserId });
+        .rpc('get_user_dashboard', { user_uuid: targetUserId } as any);
 
       if (error) throw error;
       return data;

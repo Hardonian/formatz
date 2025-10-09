@@ -7,6 +7,7 @@
 
 import { BaseService } from '../base.service';
 import { supabase } from '../../lib/supabase';
+import type { Database } from '../../types/database/schema';
 import type {
   ServiceResponse,
   ConversionRequest,
@@ -19,6 +20,7 @@ import { ConversionEngine } from './conversion.engine';
 
 export class ConversionService extends BaseService {
   private engine: ConversionEngine;
+  protected supabase = supabase;
 
   constructor() {
     super('ConversionService');
@@ -207,7 +209,7 @@ export class ConversionService extends BaseService {
       const userId = await this.getCurrentUserId();
 
       const { data, error } = await supabase
-        .rpc('get_dashboard_stats', { user_uuid: userId });
+        .rpc('get_dashboard_stats', { user_uuid: userId } as any);
 
       if (error) throw error;
       return data;
@@ -241,19 +243,21 @@ export class ConversionService extends BaseService {
       if (!prefs.autoSaveHistory) return;
     }
 
+    const insertData: Database['public']['Tables']['conversion_history']['Insert'] = {
+      user_id: userId,
+      template_id: request.templateId || null,
+      source_format: request.sourceFormat,
+      target_format: request.targetFormat,
+      input_size_bytes: result.inputSizeBytes,
+      output_size_bytes: result.outputSizeBytes,
+      status,
+      error_message: errorMessage || null,
+      processing_time_ms: result.processingTimeMs,
+    };
+
     const { error } = await supabase
       .from('conversion_history')
-      .insert({
-        user_id: userId,
-        template_id: request.templateId || null,
-        source_format: request.sourceFormat,
-        target_format: request.targetFormat,
-        input_size_bytes: result.inputSizeBytes,
-        output_size_bytes: result.outputSizeBytes,
-        status,
-        error_message: errorMessage || null,
-        processing_time_ms: result.processingTimeMs,
-      });
+      .insert(insertData as any);
 
     if (error) {
       console.warn('Failed to save conversion to history:', error);

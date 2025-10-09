@@ -44,6 +44,7 @@ export interface Database {
           created_at?: string;
           updated_at?: string;
         };
+        Relationships: [];
       };
       conversion_templates: {
         Row: {
@@ -94,6 +95,7 @@ export interface Database {
           created_at?: string;
           updated_at?: string;
         };
+        Relationships: [];
       };
       conversion_history: {
         Row: {
@@ -135,6 +137,7 @@ export interface Database {
           processing_time_ms?: number | null;
           created_at?: string;
         };
+        Relationships: [];
       };
       template_ratings: {
         Row: {
@@ -240,6 +243,7 @@ export interface Database {
           created_at?: string;
           updated_at?: string;
         };
+        Relationships: [];
       };
     };
     Views: {

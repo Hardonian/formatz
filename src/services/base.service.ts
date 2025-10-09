@@ -10,6 +10,7 @@ import { supabase } from '../lib/supabase';
 
 export class BaseService {
   protected serviceName: string;
+  protected supabase = supabase;
 
   constructor(serviceName: string) {
     this.serviceName = serviceName;

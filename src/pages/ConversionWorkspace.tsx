@@ -49,7 +49,7 @@ export function ConversionWorkspace() {
     setLoading(false);
 
     if (response.success && response.data) {
-      setOutputData(response.data.outputData);
+      setOutputData(response.data.outputData || '');
       setMetrics({
         processingTimeMs: response.data.processingTimeMs,
         inputSize: response.data.inputSizeBytes,

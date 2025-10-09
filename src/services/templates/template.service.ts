@@ -7,6 +7,7 @@
 
 import { BaseService } from '../base.service';
 import { supabase } from '../../lib/supabase';
+import type { Database } from '../../types/database/schema';
 import type {
   ServiceResponse,
   ConversionTemplate,
@@ -31,18 +32,20 @@ export class TemplateService extends BaseService {
 
       const userId = await this.getCurrentUserId();
 
+      const insertData: Database['public']['Tables']['conversion_templates']['Insert'] = {
+        user_id: userId,
+        name: dto.name,
+        description: dto.description || null,
+        source_format: dto.sourceFormat,
+        target_format: dto.targetFormat,
+        configuration: dto.configuration as any,
+        is_public: dto.isPublic || false,
+        is_favorite: dto.isFavorite || false,
+      };
+
       const { data, error } = await supabase
         .from('conversion_templates')
-        .insert({
-          user_id: userId,
-          name: dto.name,
-          description: dto.description || null,
-          source_format: dto.sourceFormat,
-          target_format: dto.targetFormat,
-          configuration: dto.configuration,
-          is_public: dto.isPublic || false,
-          is_favorite: dto.isFavorite || false,
-        })
+        .insert(insertData as any)
         .select()
         .maybeSingle();
 
@@ -173,7 +176,7 @@ export class TemplateService extends BaseService {
         target_format_filter: params.targetFormat,
         min_rating: params.minRating || 0,
         result_limit: params.limit || 20,
-      });
+      } as any);
 
       if (error) throw error;
 
@@ -211,15 +214,17 @@ export class TemplateService extends BaseService {
     return this.executeOperation(async () => {
       const userId = await this.getCurrentUserId();
 
+      const updateData: Partial<Database['public']['Tables']['conversion_templates']['Update']> = {
+        name: updates.name,
+        description: updates.description,
+        configuration: updates.configuration as any,
+        is_public: updates.isPublic,
+        is_favorite: updates.isFavorite,
+      };
+
       const { data, error} = await supabase
         .from('conversion_templates')
-        .update({
-          name: updates.name,
-          description: updates.description,
-          configuration: updates.configuration,
-          is_public: updates.isPublic,
-          is_favorite: updates.isFavorite,
-        })
+        .update(updateData as any)
         .eq('id', templateId)
         .eq('user_id', userId)
         .select()
@@ -267,9 +272,13 @@ export class TemplateService extends BaseService {
       if (!current) throw new Error('Template not found');
 
       // Toggle
+      const updateData: Partial<Database['public']['Tables']['conversion_templates']['Update']> = {
+        is_favorite: !current.is_favorite
+      };
+
       const { data, error } = await supabase
         .from('conversion_templates')
-        .update({ is_favorite: !current.is_favorite })
+        .update(updateData as any)
         .eq('id', templateId)
         .eq('user_id', userId)
         .select()
@@ -296,7 +305,7 @@ export class TemplateService extends BaseService {
         template_uuid: templateId,
         new_owner_uuid: userId,
         new_name: newName,
-      });
+      } as any);
 
       if (error) throw error;
       return data;
