@@ -21,8 +21,15 @@ export function Header() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center space-x-8">
-            <Link to="/" className="text-xl font-bold text-blue-600 dark:text-blue-400 transition-colors">
-              DataTextConverter
+            <Link to="/" className="flex items-center gap-3 group">
+              <img
+                src="/logo.png"
+                alt="4matz Logo"
+                className="h-10 w-auto transition-transform group-hover:scale-110"
+              />
+              <span className="text-xl font-bold text-gray-900 dark:text-white transition-colors hidden sm:inline">
+                4matz
+              </span>
             </Link>
             <nav className="hidden md:flex space-x-4">
               <Link

@@ -1,10 +1,22 @@
-# DataTextConverter (4matz)
+<div align="center">
+  <img src="public/logo.png" alt="4matz Logo" width="200" />
 
-A powerful multi-format data conversion platform with user authentication, template management, and conversion history tracking.
+  # 4matz
 
-## Overview
+  ### Multi-Format Data Converter
 
-DataTextConverter is a web-based application that allows users to convert data between multiple formats including JSON, XML, CSV, YAML, TOML, HTML, Markdown, and plain text. Users can save conversion templates, track their conversion history, share templates publicly, and customize their experience.
+  A powerful data conversion platform with templates, analytics, and beautiful UI
+
+  [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+  [![Version](https://img.shields.io/badge/version-2.0.0-green.svg)](package.json)
+  [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+</div>
+
+---
+
+## 🚀 Overview
+
+**4matz** is a modern web-based application that allows users to convert data between multiple formats including JSON, XML, CSV, YAML, TOML, HTML, Markdown, and plain text. With a beautiful UI, dark mode support, and powerful features like template management and conversion history, 4matz makes data conversion effortless.
 
 ## Features
 

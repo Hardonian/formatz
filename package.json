@@ -1,7 +1,7 @@
 {
-  "name": "datatextconverter",
-  "version": "1.0.0",
-  "description": "Multi-format data conversion platform with templates and analytics",
+  "name": "4matz",
+  "version": "2.0.0",
+  "description": "4matz - Multi-format data conversion platform with templates, analytics, and beautiful UI",
   "type": "module",
   "scripts": {
     "dev": "vite",

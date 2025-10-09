@@ -165,15 +165,19 @@ export function EnhancedConversionWorkspace() {
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-500 dark:to-purple-500 rounded-xl shadow-lg p-6 text-white"
+        className="bg-gradient-to-r from-emerald-600 to-green-600 dark:from-emerald-500 dark:to-green-500 rounded-xl shadow-lg p-6 text-white"
       >
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold mb-2 flex items-center gap-3">
-              <SparklesIcon className="h-8 w-8" />
-              Data Converter
+              <img
+                src="/favicon.png"
+                alt="4matz"
+                className="h-10 w-10 rounded-lg"
+              />
+              4matz Data Converter
             </h1>
-            <p className="text-blue-100 dark:text-blue-50">
+            <p className="text-green-100 dark:text-green-50">
               Convert between 8 data formats instantly
             </p>
           </div>
