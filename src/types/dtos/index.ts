@@ -7,6 +7,9 @@
 
 import type { ConversionFormat, PlanType, ThemeType } from '../database/schema';
 
+// Re-export types for external use
+export type { ConversionFormat, PlanType, ThemeType } from '../database/schema';
+
 // ============================================
 // USER DTOs
 // ============================================
