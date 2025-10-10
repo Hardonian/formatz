@@ -18,12 +18,16 @@ export { templateService } from './templates/template.service';
 // Conversion Services
 export { conversionService } from './conversions/conversion.service';
 
+// Usage & Monetization Services
+export { usageService } from './usage/usage.service';
+
 // Export service classes for testing/extension
 export { AuthService } from './auth/auth.service';
 export { ProfileService } from './auth/profile.service';
 export { TemplateService } from './templates/template.service';
 export { ConversionService } from './conversions/conversion.service';
 export { ConversionEngine } from './conversions/conversion.engine';
+export { UsageService } from './usage/usage.service';
 export { BaseService } from './base.service';
 
 // Re-export common types

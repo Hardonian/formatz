@@ -44,6 +44,12 @@ export function Header() {
               >
                 Gallery
               </Link>
+              <Link
+                to="/pricing"
+                className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              >
+                Pricing
+              </Link>
               {user && (
                 <>
                   <Link
@@ -53,10 +59,16 @@ export function Header() {
                     Templates
                   </Link>
                   <Link
-                    to="/history"
+                    to="/analytics"
                     className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                   >
-                    History
+                    Analytics
+                  </Link>
+                  <Link
+                    to="/api-keys"
+                    className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  >
+                    API
                   </Link>
                 </>
               )}

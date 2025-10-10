@@ -9,6 +9,9 @@ import { TemplatesPage } from '@/pages/TemplatesPage';
 import { HistoryPage } from '@/pages/HistoryPage';
 import { ProfilePage } from '@/pages/ProfilePage';
 import { PublicGalleryPage } from '@/pages/PublicGalleryPage';
+import { PricingPage } from '@/pages/PricingPage';
+import { AnalyticsPage } from '@/pages/AnalyticsPage';
+import { APIKeysPage } from '@/pages/APIKeysPage';
 import { CommandPalette } from '@/components/CommandPalette';
 
 export function App() {
@@ -25,6 +28,7 @@ export function App() {
 
             <Route path="convert" element={<EnhancedConversionWorkspace />} />
             <Route path="gallery" element={<PublicGalleryPage />} />
+            <Route path="pricing" element={<PricingPage />} />
 
             <Route
               path="templates"
@@ -39,6 +43,22 @@ export function App() {
               element={
                 <ProtectedRoute>
                   <HistoryPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="analytics"
+              element={
+                <ProtectedRoute>
+                  <AnalyticsPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="api-keys"
+              element={
+                <ProtectedRoute>
+                  <APIKeysPage />
                 </ProtectedRoute>
               }
             />
