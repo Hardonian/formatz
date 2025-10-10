@@ -9,8 +9,8 @@ import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import type { Database } from '../types/database/schema';
 
 // Environment variables validation
-const supabaseUrl = import.meta.env.VITE_Bolt_Database_URL;
-const supabaseAnonKey = import.meta.env.VITE_Bolt_Database_ANON_KEY;
+const supabaseUrl = import.meta.env.VITE_BoltDatabase_URL;
+const supabaseAnonKey = import.meta.env.VITE_BoltDatabase_ANON_KEY;
 
 if (!supabaseUrl || !supabaseAnonKey) {
   throw new Error('Missing Supabase environment variables');
