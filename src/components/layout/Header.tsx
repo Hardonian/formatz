@@ -39,29 +39,33 @@ export function Header() {
                 Convert
               </Link>
               <Link
-                to="/templates"
-                className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-              >
-                Templates
-              </Link>
-              <Link
-                to="/history"
-                className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-              >
-                History
-              </Link>
-              <Link
                 to="/gallery"
                 className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
               >
                 Gallery
               </Link>
+              {user && (
+                <>
+                  <Link
+                    to="/templates"
+                    className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  >
+                    Templates
+                  </Link>
+                  <Link
+                    to="/history"
+                    className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  >
+                    History
+                  </Link>
+                </>
+              )}
             </nav>
           </div>
 
           <div className="flex items-center space-x-4">
             <ThemeToggle />
-            {user && (
+            {user ? (
               <>
                 <Link
                   to="/profile"
@@ -72,6 +76,19 @@ export function Header() {
                 <Button variant="secondary" size="sm" onClick={handleSignOut}>
                   Sign Out
                 </Button>
+              </>
+            ) : (
+              <>
+                <Link to="/login">
+                  <Button variant="secondary" size="sm">
+                    Log In
+                  </Button>
+                </Link>
+                <Link to="/signup">
+                  <Button variant="primary" size="sm">
+                    Sign Up
+                  </Button>
+                </Link>
               </>
             )}
           </div>

@@ -20,20 +20,36 @@ export function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
 
-          <Route
-            path="/"
-            element={
-              <ProtectedRoute>
-                <Layout />
-              </ProtectedRoute>
-            }
-          >
+          <Route path="/" element={<Layout />}>
             <Route index element={<Navigate to="/convert" replace />} />
+
             <Route path="convert" element={<EnhancedConversionWorkspace />} />
-            <Route path="templates" element={<TemplatesPage />} />
-            <Route path="history" element={<HistoryPage />} />
             <Route path="gallery" element={<PublicGalleryPage />} />
-            <Route path="profile" element={<ProfilePage />} />
+
+            <Route
+              path="templates"
+              element={
+                <ProtectedRoute>
+                  <TemplatesPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="history"
+              element={
+                <ProtectedRoute>
+                  <HistoryPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="profile"
+              element={
+                <ProtectedRoute>
+                  <ProfilePage />
+                </ProtectedRoute>
+              }
+            />
           </Route>
 
           <Route path="*" element={<Navigate to="/" replace />} />
