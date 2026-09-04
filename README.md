@@ -120,6 +120,10 @@ npm install
 3. Set up environment variables
 ```bash
 # .env file is already configured with Supabase credentials
+
+<!-- BEGIN: REPO HERO -->
+![formatz — hero generated locally on the GPU stack](assets/repo-hero.png)
+<!-- END: REPO HERO -->
 # VITE_SUPABASE_URL=https://wpjoxxtknefrsioccwjq.supabase.co
 # VITE_SUPABASE_SUPABASE_ANON_KEY=<your-key>
 ```
